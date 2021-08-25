@@ -13,11 +13,11 @@
 
 * numbers
     * integers
-      * byte
-      * short
-      * int
-      * long
+      * byte -- 2 bytes
+      * short -- 4 bytes
+      * int -- 8 bytes
+      * long -- 16 bytes
       * char
     * float point
-      * float
-      * double
+      * float -- with literal f ex.: 15.3f
+      * double -- most common
