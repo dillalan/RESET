@@ -6,7 +6,17 @@ public class Caneta {
     String cor; // A cor da tinta na caneta
     float ponta; // espessura da ponta/pena da caneta (i.e 0.5)
     float carga = 100f; // Percentual de carga na caneta
-    boolean tampada = true; // status da tampa da caneta
+    boolean tampada; // status da tampa da caneta
+
+
+    public Caneta() { // Método constructor. Inicializa o objeto com as expressões contidas nele.
+        this.setPonta(0.5f); // espessura da ponta/pena da caneta (i.e 0.5)
+        this.tampada = true;
+    }
+
+    public void setPonta(float ponta){ // Método setter
+        this.ponta = ponta;
+    }
 
     public void setModelo(String modelo) {
         // Método para atribuir o modelo da caneta. setModelo recebe o parâmetro modelo
@@ -18,7 +28,7 @@ public class Caneta {
         this.cor = cor;
     }
 
-    public float getPonta() {
+    public float getPonta() { // Método getter
         // Método para retornar a espessura da ponta/pena da caneta
         return ponta;
     }
