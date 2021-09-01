@@ -15,8 +15,11 @@ public class SuperMarioVisibilidade {
 //        player1.hatColor = "Orange"; // hatColor é um atributo privado e só pode ser alterado dentro da sua classe
         player1.castMario();
         player1.isMoving(true, 6); // isMoving() é um método protegido, mas player1 é uma instância de Mario visibilidade
+        player1.staminaLoss();
         player1.isMoving(true, 8);
+        player1.staminaLoss();
         player1.isMoving(true, 5);
+        player1.staminaLoss();
 //        player1.jumpStyle(); // jumpStyle() é um método privado e só pode ser chamado dentro da sua classe
         player1.hasYoshi = true;
 //        player1.lifePoints; // lifePoints é um atributo privado da classe originária.
@@ -24,10 +27,13 @@ public class SuperMarioVisibilidade {
         player1.isMoving(true, 8);
         player1.castMario();
         player1.hasFeather = true;
+        player1.staminaGain();
         player1.featherCape();
         player1.lostYoshi();
+        player1.staminaGain();
         player1.castMario();
         player1.lostFeather();
+        player1.staminaGain();
         player1.castMario();
     }
 }

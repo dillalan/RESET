@@ -6,8 +6,8 @@ public class BankSim {
         jubileu.getBankStatement();
         BankAcc creuza = new BankAcc(2,"Creuza", 1);
         creuza.getBankStatement();
+        creuza.setDeposit(500);
+        jubileu.setDeposit(300);
+        creuza.setWithdraw(100);
     }
-
-
-
 }

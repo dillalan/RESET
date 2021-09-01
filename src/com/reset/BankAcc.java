@@ -3,12 +3,17 @@ package com.reset;
 public class BankAcc {
     // Uma classe de objeto que representa uma conta bancária
 
-    int id;
+    public int id;
     private String name;
     private float balance;
     private String accType;
 
     public BankAcc(int id, String name, int acc){
+        /*
+        <id> é o número identificador da conta
+        <name> é o nome do cliente
+        <acc> é um valor, 0 ou 1, para diferenciar conta corrente de conta poupança.
+         */
         String[] type = new String[]{"Savings Account", "Checking Account"};
         this.id = id;
         this.name = name;
@@ -32,9 +37,11 @@ public class BankAcc {
     }
 
     public void setWithdraw(float cash){
-        this.balance -= cash;
-        getBankStatement();
+        if (cash <= this.balance){
+            this.balance -= cash;
+            getBankStatement();
+        } else {
+            System.out.println("Saldo insuficiente para saque!");
+        }
     }
-
-
 }

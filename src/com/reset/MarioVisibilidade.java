@@ -98,6 +98,22 @@ public class MarioVisibilidade {
         this.walk = walk;
     }
 
+    public void staminaLoss(){
+        if (this.stamina>0){
+            this.stamina -= 10;
+        } else{
+            this.stamina = 0;
+        }
+    }
+
+    public void staminaGain(){
+        if (this.stamina<100){
+            this.stamina += 10;
+        } else{
+            this.stamina = 100;
+        }
+    }
+
     protected void isMoving(boolean move, int action){
         while(move){
             if (action==5) {
@@ -165,6 +181,7 @@ public class MarioVisibilidade {
         System.out.println("-------\n");
         System.out.println("Its-a me, Mario!");
         System.out.println("Life points: "+this.lifePoints);
+        System.out.println("Stamina: "+this.stamina+" points");
         System.out.println("Hat Color: "+this.hatColor);
         System.out.println("Shirt Color: "+this.shirtColor);
         System.out.println("Jumpsuit Color: "+this.jumpsuitColor);
