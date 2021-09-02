@@ -4,98 +4,30 @@ public class MarioVisibilidade {
     private String name;
     private int age;
     private double height;
-    private String hatColor;
-    private String shirtColor = "red";
-    private String jumpsuitColor = "blue";
-    private String glovesColor = "white";
-    private String shoeColor = "brown";
-    private String capeColor = "yellow";
     private int stamina;
     private int jumpHeight = 1;
     private int pace = 1;
     private int lifePoints = 0;
+    private int respawn;
     protected boolean hasFeather = false;
     protected boolean hasYoshi = false;
     public boolean cape = false;
     public boolean run;
     public boolean walk;
     public boolean jump;
+    private int coin;
 
     public MarioVisibilidade(){
         this.name = "Mario Bros";
         this.age = 40;
         this.height = 1.5;
         this.stamina = 100;
-        this.setHatColor("red");
-        this.setShirtColor("red");
-        this.setJumpsuitColor("blue");
-        this.setGlovesColor("white");
-        this.setShoeColor("brown");
-
+        this.coin = 0;
+        this.respawn = 3;
     }
 
-    public void setHatColor(String hatColor) {
-        this.hatColor = hatColor;
-    }
-
-    public void setShirtColor(String shirtColor){
-        this.shirtColor = shirtColor;
-    }
-
-    public void setJumpsuitColor(String jumpsuitColor) {
-        this.jumpsuitColor = jumpsuitColor;
-    }
-
-    public void setGlovesColor(String glovesColor) {
-        this.glovesColor = glovesColor;
-    }
-
-    public void setShoeColor(String shoeColor) {
-        this.shoeColor = shoeColor;
-    }
-
-    public void setCapeColor(String capeColor) {
-        this.capeColor = capeColor;
-    }
-
-    public void setCape(boolean cape) {
-        this.cape = cape;
-    }
-
-    public void setStamina(int stamina){
-        this.stamina = stamina;
-    }
-
-    public void setPace(int pace) {
-        this.pace = pace;
-    }
-
-    public void setLifePoints(int lifePoints) {
-        this.lifePoints = lifePoints;
-    }
-
-    public void setHasFeather(boolean hasFeather) {
-        this.hasFeather = hasFeather;
-    }
-
-    public void setHasYoshi(boolean hasYoshi) {
-        this.hasYoshi = hasYoshi;
-    }
-
-    public void setJump(boolean jump) {
-        this.jump = jump;
-    }
-
-    public void setJumpHeight(int jumpHeight) {
-        this.jumpHeight = jumpHeight;
-    }
-
-    public void setRun(boolean run) {
-        this.run = run;
-    }
-
-    public void setWalk(boolean walk) {
-        this.walk = walk;
+    public void restoreStamina(){
+        this.stamina = 100;
     }
 
     public void staminaLoss(){
@@ -111,6 +43,29 @@ public class MarioVisibilidade {
             this.stamina += 10;
         } else{
             this.stamina = 100;
+        }
+    }
+
+    public void marioDeath(){
+        this.stamina = 0;
+        this.respawn -= 1;
+        this.coin = 0;
+        System.out.println("Oh no! Mario is no more!");
+        if (this.respawn <= 0){
+            this.respawn = 0;
+            castMario();
+            System.out.println("\n<<<<<<G A M E  O V E R>>>>>>\n");
+        }
+        restoreStamina();
+    }
+
+    public void collectCoin(){
+        this.coin +=1;
+        if (this.coin==10){
+            this.respawn += 1;
+            System.out.println("Mario got 10 coins!");
+        } else {
+            System.out.println("Mario got a coin!");
         }
     }
 
@@ -166,7 +121,7 @@ public class MarioVisibilidade {
             this.cape = true;
             this.jumpHeight += 5;
             lifePoints += 1;
-            System.out.println("Mario has collected a feather and now wears a "+this.capeColor+" cape. Lets fly!\n");
+            System.out.println("Mario has collected a feather and now wears a cape. Lets fly!\n");
         }
     }
 
@@ -180,13 +135,10 @@ public class MarioVisibilidade {
     public void castMario(){
         System.out.println("-------\n");
         System.out.println("Its-a me, Mario!");
+        System.out.println("Number of respawns: "+this.respawn);
         System.out.println("Life points: "+this.lifePoints);
         System.out.println("Stamina: "+this.stamina+" points");
-        System.out.println("Hat Color: "+this.hatColor);
-        System.out.println("Shirt Color: "+this.shirtColor);
-        System.out.println("Jumpsuit Color: "+this.jumpsuitColor);
-        System.out.println("Gloves Color: "+glovesColor);
-        System.out.println("Shoe Color: "+shoeColor);
+        System.out.println("Coins collected: "+this.coin);
         System.out.println("Mario can fly? "+this.hasFeather);
         System.out.println("Mario wandering with Yoshi? "+this.hasYoshi);
         System.out.println("Mario can jump: "+this.jumpHeight+" square(s)");

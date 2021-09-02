@@ -35,5 +35,14 @@ public class SuperMarioVisibilidade {
         player1.lostFeather();
         player1.staminaGain();
         player1.castMario();
+        for (int i=0;i<10;++i){
+            player1.collectCoin();
+        }
+        player1.castMario();
+        player1.marioDeath();
+        player1.marioDeath();
+        player1.castMario();
+        player1.marioDeath();
+        player1.marioDeath();
     }
 }
