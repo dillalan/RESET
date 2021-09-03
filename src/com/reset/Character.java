@@ -1,12 +1,14 @@
 package com.reset;
 
-public class MarioVisibilidade {
+import java.util.Objects;
+
+public class Character {
+
     private String name;
-    private int age;
     private double height;
     private int stamina;
-    private int jumpHeight = 1;
-    private int pace = 1;
+    private double jumpHeight = 1;
+    private int pace;
     private int lifePoints = 0;
     private int respawn;
     protected boolean hasFeather = false;
@@ -17,13 +19,42 @@ public class MarioVisibilidade {
     public boolean jump;
     private int coin;
 
-    public MarioVisibilidade(){
-        this.name = "Mario Bros";
-        this.age = 40;
-        this.height = 1.5;
-        this.stamina = 100;
-        this.coin = 0;
-        this.respawn = 3;
+    public Character(String name) {
+        setName(name);
+        setHeight(1.5);
+        setJumpHeight();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPace(int pace) {
+        this.pace = pace;
+    }
+
+    public int getPace() {
+        return pace;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setJumpHeight() {
+        if (Objects.equals(this.name, "Mario")){
+            this.jumpHeight = 0.5*getHeight();
+        } else{
+            this.jumpHeight = 2*getHeight();
+        }
     }
 
     public void restoreStamina(){
@@ -46,14 +77,14 @@ public class MarioVisibilidade {
         }
     }
 
-    public void marioDeath(){
+    public void characterDeath(){
         this.stamina = 0;
         this.respawn -= 1;
         this.coin = 0;
         System.out.println("Oh no! Mario is no more!");
         if (this.respawn <= 0){
             this.respawn = 0;
-            castMario();
+            castCharacter();
             System.out.println("\n<<<<<<G A M E  O V E R>>>>>>\n");
         }
         restoreStamina();
@@ -69,16 +100,17 @@ public class MarioVisibilidade {
         }
     }
 
-    protected void isMoving(boolean move, int action){
+    protected void isMoving(int action){
+        boolean move = true;
         while(move){
             if (action==5) {
                 this.run = true;
-                this.pace = 3;
+                setPace(getPace()+1);
                 System.out.println("Mario is running fast!\n");
             }
             else if (action==6){
                 this.walk = true;
-                this.pace = 1;
+                setPace(1);
                 System.out.println("Mario is just walking\n");
             }
             else if (action==8){
@@ -90,7 +122,7 @@ public class MarioVisibilidade {
     }
 
     private void jumpStyle(){
-        if (jump) {
+        if (this.jump) {
             if (hasYoshi) {
                 System.out.println("Mario jumped with Yoshi!\n");
             } else if (hasFeather) {
@@ -101,7 +133,7 @@ public class MarioVisibilidade {
         }
     }
 
-    public void withYoshi(){
+    public void gotYoshi(){
         if (hasYoshi){
             lifePoints += 1;
             this.jumpHeight +=1;
@@ -116,11 +148,11 @@ public class MarioVisibilidade {
         lifePoints -= 1;
     }
 
-    public void featherCape(){
+    public void gotFeather(){
         if (hasFeather){
             this.cape = true;
-            this.jumpHeight += 5;
             lifePoints += 1;
+            this.jumpHeight += 5;
             System.out.println("Mario has collected a feather and now wears a cape. Lets fly!\n");
         }
     }
@@ -132,9 +164,9 @@ public class MarioVisibilidade {
         lifePoints -= 1;
     }
 
-    public void castMario(){
+    public void castCharacter(){
         System.out.println("-------\n");
-        System.out.println("Its-a me, Mario!");
+        System.out.println("Its-a me, "+getName()+"!");
         System.out.println("Number of respawns: "+this.respawn);
         System.out.println("Life points: "+this.lifePoints);
         System.out.println("Stamina: "+this.stamina+" points");
