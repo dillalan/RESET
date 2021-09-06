@@ -92,9 +92,9 @@ public class Character {
 
     public void collectCoin(){
         this.coin +=1;
-        if (this.coin==10){
+        if (this.coin%10==0){
             this.respawn += 1;
-            System.out.println("Mario got 10 coins!");
+            System.out.println("Mario got the 10th coin!");
         } else {
             System.out.println("Mario got a coin!");
         }
