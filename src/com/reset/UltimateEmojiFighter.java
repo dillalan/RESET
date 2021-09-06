@@ -61,5 +61,7 @@ public class UltimateEmojiFighter {
         for (int i=0; i<6; i++) {
             fighters[i].presentFighter();
         }
+
+        Fight fight1 = new Fight(fighters[3], fighters[2]);
     }
 }
