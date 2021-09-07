@@ -81,7 +81,7 @@ public class Character {
         this.stamina = 0;
         this.respawn -= 1;
         this.coin = 0;
-        System.out.println("Oh no! Mario is no more!");
+        System.out.println("Oh no! " +getName()+ "  is no more!");
         if (this.respawn <= 0){
             this.respawn = 0;
             castCharacter();
@@ -94,9 +94,9 @@ public class Character {
         this.coin +=1;
         if (this.coin%10==0){
             this.respawn += 1;
-            System.out.println("Mario got the 10th coin!");
+            System.out.println(getName()+" got the 10th coin!");
         } else {
-            System.out.println("Mario got a coin!");
+            System.out.println(getName()+" got a coin!");
         }
     }
 
@@ -106,12 +106,12 @@ public class Character {
             if (action==5) {
                 this.run = true;
                 setPace(getPace()+1);
-                System.out.println("Mario is running fast!\n");
+                System.out.println(getName()+" is running fast!\n");
             }
             else if (action==6){
                 this.walk = true;
                 setPace(1);
-                System.out.println("Mario is just walking\n");
+                System.out.println(getName()+" is just walking\n");
             }
             else if (action==8){
                 this.jump = true;
@@ -124,11 +124,11 @@ public class Character {
     private void jumpStyle(){
         if (this.jump) {
             if (hasYoshi) {
-                System.out.println("Mario jumped with Yoshi!\n");
+                System.out.println( getName()+" jumped with Yoshi!\n");
             } else if (hasFeather) {
-                System.out.println("Mario is flying! <O>\n");
+                System.out.println(getName()+" is flying! <O>\n");
             } else {
-                System.out.println("Mario jumped\n");
+                System.out.println(getName()+" jumped\n");
             }
         }
     }
@@ -137,13 +137,13 @@ public class Character {
         if (hasYoshi){
             lifePoints += 1;
             this.jumpHeight +=1;
-            System.out.println("Mario is mounted in his travel companion, Yoshi!\n");
+            System.out.println( getName()+" is mounted in his travel companion, Yoshi!\n");
         }
     }
 
     public void lostYoshi(){
         this.hasYoshi = false;
-        System.out.println("Oh no! Mario lost his friend Yoshi :(\n");
+        System.out.println("Oh no! " +getName()+" lost his friend Yoshi :(\n");
         this.jumpHeight -= 1;
         lifePoints -= 1;
     }
@@ -153,12 +153,12 @@ public class Character {
             this.cape = true;
             lifePoints += 1;
             this.jumpHeight += 5;
-            System.out.println("Mario has collected a feather and now wears a cape. Lets fly!\n");
+            System.out.println( getName()+" has collected a feather and now wears a cape. Lets fly!\n");
         }
     }
 
     public void lostFeather(){
-        System.out.println("Darn it! Mario lost his cape!\n");
+        System.out.println("Darn it! " +getName()+" lost his cape!\n");
         this.hasFeather = false;
         this.jumpHeight -= 5;
         lifePoints -= 1;
@@ -171,9 +171,9 @@ public class Character {
         System.out.println("Life points: "+this.lifePoints);
         System.out.println("Stamina: "+this.stamina+" points");
         System.out.println("Coins collected: "+this.coin);
-        System.out.println("Mario can fly? "+this.hasFeather);
-        System.out.println("Mario wandering with Yoshi? "+this.hasYoshi);
-        System.out.println("Mario can jump: "+this.jumpHeight+" square(s)");
+        System.out.println(getName()+" can fly? "+this.hasFeather);
+        System.out.println(getName()+" wandering with Yoshi? "+this.hasYoshi);
+        System.out.println(getName()+" can jump: "+this.jumpHeight+" square(s)");
         System.out.println("-------\n");
     }
 }

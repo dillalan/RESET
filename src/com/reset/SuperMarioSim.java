@@ -47,8 +47,10 @@ public class SuperMarioSim {
 
         ////////////////////////////
 
-        SuperMarioGame superMario = new SuperMarioGame("Mario", "Luigi");
-        superMario.play(superMario.mario);
-        superMario.play(superMario.luigi);
+        Character p1 = new Character("Mario!");
+        Character p2 = new Character("Luigi!");
+        SuperMarioGame superMario = new SuperMarioGame(p1, p2);
+        superMario.play();
+
     }
 }
