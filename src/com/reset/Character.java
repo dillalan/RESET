@@ -2,27 +2,167 @@ package com.reset;
 
 import java.util.Objects;
 
-public class Character {
+public abstract class Character {
 
     private String name;
-    private double height;
-    private int stamina;
+    private int stamina = 100;
+    private int respawn = 3;
+    private int coin = 0;
+    private String hatColor;
+    private String shirtColor;
+    private String jumpsuitColor;
+    private String glovesColor;
+    private String shoeColor;
+    private String capeColor;
     private double jumpHeight = 1;
-    private int pace;
+    private int pace = 1;
     private int lifePoints = 0;
-    private int respawn;
-    protected boolean hasFeather = false;
-    protected boolean hasYoshi = false;
-    public boolean cape = false;
-    public boolean run;
-    public boolean walk;
-    public boolean jump;
-    private int coin;
+    private boolean hasFeather = false;
+    private boolean hasYoshi = false;
+    private boolean cape = false;
+    private boolean run;
+    private boolean walk;
+    private boolean jump;
+    private double height;
 
-    public Character(String name) {
-        setName(name);
-        setHeight(1.5);
+    public Character() {
         setJumpHeight();
+    }
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public int getRespawn() {
+        return respawn;
+    }
+
+    public void setRespawn(int respawn) {
+        this.respawn = respawn;
+    }
+
+    public int getCoin() {
+        return coin;
+    }
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
+
+    public String getHatColor() {
+        return hatColor;
+    }
+
+    public void setHatColor(String hatColor) {
+        this.hatColor = hatColor;
+    }
+
+    public String getShirtColor() {
+        return shirtColor;
+    }
+
+    public void setShirtColor(String shirtColor) {
+        this.shirtColor = shirtColor;
+    }
+
+    public String getJumpsuitColor() {
+        return jumpsuitColor;
+    }
+
+    public void setJumpsuitColor(String jumpsuitColor) {
+        this.jumpsuitColor = jumpsuitColor;
+    }
+
+    public String getGlovesColor() {
+        return glovesColor;
+    }
+
+    public void setGlovesColor(String glovesColor) {
+        this.glovesColor = glovesColor;
+    }
+
+    public String getShoeColor() {
+        return shoeColor;
+    }
+
+    public void setShoeColor(String shoeColor) {
+        this.shoeColor = shoeColor;
+    }
+
+    public String getCapeColor() {
+        return capeColor;
+    }
+
+    public void setCapeColor(String capeColor) {
+        this.capeColor = capeColor;
+    }
+
+    public double getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public void setJumpHeight(double jumpHeight) {
+        this.jumpHeight = jumpHeight;
+    }
+
+    public int getLifePoints() {
+        return lifePoints;
+    }
+
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    public boolean isHasFeather() {
+        return hasFeather;
+    }
+
+    public void setHasFeather(boolean hasFeather) {
+        this.hasFeather = hasFeather;
+    }
+
+    public boolean isHasYoshi() {
+        return hasYoshi;
+    }
+
+    public void setHasYoshi(boolean hasYoshi) {
+        this.hasYoshi = hasYoshi;
+    }
+
+    public boolean isCape() {
+        return cape;
+    }
+
+    public void setCape(boolean cape) {
+        this.cape = cape;
+    }
+
+    public boolean isRun() {
+        return run;
+    }
+
+    public void setRun(boolean run) {
+        this.run = run;
+    }
+
+    public boolean isWalk() {
+        return walk;
+    }
+
+    public void setWalk(boolean walk) {
+        this.walk = walk;
+    }
+
+    public boolean isJump() {
+        return jump;
+    }
+
+    public void setJump(boolean jump) {
+        this.jump = jump;
     }
 
     public String getName() {
@@ -58,32 +198,32 @@ public class Character {
     }
 
     public void restoreStamina(){
-        this.stamina = 100;
+        setStamina(100);
     }
 
     public void staminaLoss(){
-        if (this.stamina>0){
-            this.stamina -= 10;
+        if (getStamina()>0){
+            setStamina(getStamina()-10);
         } else{
-            this.stamina = 0;
+            setStamina(0);
         }
     }
 
     public void staminaGain(){
-        if (this.stamina<100){
-            this.stamina += 10;
+        if (getStamina()<100){
+            setStamina(getStamina()+10);
         } else{
-            this.stamina = 100;
+            setStamina(100);
         }
     }
 
     public void characterDeath(){
-        this.stamina = 0;
-        this.respawn -= 1;
-        this.coin = 0;
+        setStamina(0);
+        setRespawn(getRespawn()-1);
+        setCoin(0);
         System.out.println("Oh no! " +getName()+ "  is no more!");
-        if (this.respawn <= 0){
-            this.respawn = 0;
+        if (getRespawn() <= 0){
+            setRespawn(0);
             castCharacter();
             System.out.println("\n<<<<<<G A M E  O V E R>>>>>>\n");
         }
@@ -91,30 +231,30 @@ public class Character {
     }
 
     public void collectCoin(){
-        this.coin +=1;
-        if (this.coin%10==0){
-            this.respawn += 1;
+        setCoin(getCoin()+1);
+        if (getCoin()%10==0){
+            setRespawn(getRespawn()+1);
             System.out.println(getName()+" got the 10th coin!");
         } else {
             System.out.println(getName()+" got a coin!");
         }
     }
 
-    protected void isMoving(int action){
+    public void isMoving(int action){
         boolean move = true;
         while(move){
             if (action==5) {
-                this.run = true;
+                setRun(true);
                 setPace(getPace()+1);
                 System.out.println(getName()+" is running fast!\n");
             }
             else if (action==6){
-                this.walk = true;
+                setWalk(true);
                 setPace(1);
                 System.out.println(getName()+" is just walking\n");
             }
             else if (action==8){
-                this.jump = true;
+                setJump(true);
                 jumpStyle();
             }
             move = false;
@@ -122,10 +262,10 @@ public class Character {
     }
 
     private void jumpStyle(){
-        if (this.jump) {
-            if (hasYoshi) {
+        if (isJump()) {
+            if (isHasYoshi()) {
                 System.out.println( getName()+" jumped with Yoshi!\n");
-            } else if (hasFeather) {
+            } else if (isHasFeather()) {
                 System.out.println(getName()+" is flying! <O>\n");
             } else {
                 System.out.println(getName()+" jumped\n");
@@ -134,46 +274,46 @@ public class Character {
     }
 
     public void gotYoshi(){
-        if (hasYoshi){
-            lifePoints += 1;
-            this.jumpHeight +=1;
-            System.out.println( getName()+" is mounted in his travel companion, Yoshi!\n");
+        if (isHasYoshi()){
+            setLifePoints(getLifePoints()+1);
+            setJumpHeight(getJumpHeight()+1);
+            System.out.println(getName()+" is mounted in his travel companion, Yoshi!\n");
         }
     }
 
     public void lostYoshi(){
-        this.hasYoshi = false;
+        setHasYoshi(false);
         System.out.println("Oh no! " +getName()+" lost his friend Yoshi :(\n");
-        this.jumpHeight -= 1;
-        lifePoints -= 1;
+        setJumpHeight(getJumpHeight()-1);
+        setLifePoints(getLifePoints()-1);
     }
 
     public void gotFeather(){
-        if (hasFeather){
-            this.cape = true;
-            lifePoints += 1;
-            this.jumpHeight += 5;
+        if (isHasFeather()){
+            setCape(true);
+            setLifePoints(getLifePoints()+1);
+            setJumpHeight(getJumpHeight()+5);
             System.out.println( getName()+" has collected a feather and now wears a cape. Lets fly!\n");
         }
     }
 
     public void lostFeather(){
         System.out.println("Darn it! " +getName()+" lost his cape!\n");
-        this.hasFeather = false;
-        this.jumpHeight -= 5;
-        lifePoints -= 1;
+        setHasFeather(false);
+        setLifePoints(getLifePoints()-1);
+        setJumpHeight(getJumpHeight()-5);
     }
 
     public void castCharacter(){
         System.out.println("-------\n");
         System.out.println("Its-a me, "+getName()+"!");
-        System.out.println("Number of respawns: "+this.respawn);
-        System.out.println("Life points: "+this.lifePoints);
-        System.out.println("Stamina: "+this.stamina+" points");
-        System.out.println("Coins collected: "+this.coin);
-        System.out.println(getName()+" can fly? "+this.hasFeather);
-        System.out.println(getName()+" wandering with Yoshi? "+this.hasYoshi);
-        System.out.println(getName()+" can jump: "+this.jumpHeight+" square(s)");
+        System.out.println("Number of respawns: "+getRespawn());
+        System.out.println("Life points: "+getLifePoints());
+        System.out.println("Stamina: "+getStamina()+" points");
+        System.out.println("Coins collected: "+getCoin());
+        System.out.println(getName()+" can fly? "+isHasFeather());
+        System.out.println(getName()+" wandering with Yoshi? "+isHasYoshi());
+        System.out.println(getName()+" can jump: "+getJumpHeight()+" square(s)");
         System.out.println("-------\n");
     }
 }
