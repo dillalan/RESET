@@ -47,10 +47,19 @@ public class SuperMarioSim {
 
         ////////////////////////////
 
-        Character p1 = new Character("Mario!");
-        Character p2 = new Character("Luigi!");
+        Mario p1 = new Mario();
+        Luigi p2 = new Luigi();
+        Yoshi yoshi = new Yoshi();
         SuperMarioGame superMario = new SuperMarioGame(p1, p2);
         superMario.play();
+        yoshi.eat();
+        yoshi.eat();
+        yoshi.eat();
+        yoshi.eat();
+        yoshi.eat();
+        p1.setHasYoshi(true);
+        p1.ride();
+        p1.checkYoshi();
 
     }
 }
